@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace VideoPlayer.Scripts
 {
@@ -13,13 +14,15 @@ namespace VideoPlayer.Scripts
         private const string PrefabPath = "PlaylistItem";
         
         private readonly Transform _content;
+        private readonly Text _videoTitleText;
         private List<PlaylistItemView> _itemViews = new List<PlaylistItemView>();
         private PlaylistItemView _selectedItem;
         private PlaylistItemView _itemPrefab;
 
-        public VideosPlaylistUIHandler(Transform content)
+        public VideosPlaylistUIHandler(Transform content, Text videoTitleText)
         {
             _content = content;
+            _videoTitleText = videoTitleText;
             _itemPrefab = Resources.Load<PlaylistItemView>(PrefabPath);
         }
 
@@ -49,6 +52,7 @@ namespace VideoPlayer.Scripts
             
             _selectedItem = _itemViews[idx];
             _selectedItem.Select();
+            _videoTitleText.text = _selectedItem.Title.text;
         }
     }
 }

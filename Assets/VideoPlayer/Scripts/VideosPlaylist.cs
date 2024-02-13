@@ -15,6 +15,7 @@ public class VideosPlaylist : MonoBehaviour
     [Header("UI Elements")] [Space(10)]
     [SerializeField] private Button forwardButton;
     [SerializeField] private Button backButton;
+    [SerializeField] private Text videoTitle;
 
     private PlaylistConfig config;
     private PlaylistMediaPlayerHandler _playlistMediaPlayerHandler;
@@ -27,7 +28,7 @@ public class VideosPlaylist : MonoBehaviour
     {
         config = Resources.Load<PlaylistConfig>(ConfigPath);
         _playlistMediaPlayerHandler = new PlaylistMediaPlayerHandler(playlistMediaPlayer);
-        _videosPlaylistUIHandler = new VideosPlaylistUIHandler(content);
+        _videosPlaylistUIHandler = new VideosPlaylistUIHandler(content, videoTitle);
         _selectedItemIndex = 0;
         
         forwardButton.onClick.AddListener(PlayNext);
